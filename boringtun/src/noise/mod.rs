@@ -587,6 +587,16 @@ impl Tunn {
 
         (time, tx_bytes, rx_bytes, loss, rtt)
     }
+
+    pub fn receiving_idx(&self) -> [u32; N_SESSIONS] {
+        let mut res = [0u32; N_SESSIONS];
+        for i in 0..N_SESSIONS {
+            if let Some(s) = &self.sessions[i] {
+                res[i] = s.receiving_index;
+            }
+        }
+        res
+    }
 }
 
 #[cfg(test)]
